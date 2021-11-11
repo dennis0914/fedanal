@@ -3,7 +3,4 @@ This project aims to perform sentiment analysis on FED's FOMC meeting materials 
 
 Text materials include
 - Minutes
-- Transcript
 - Statement
-- Greenbook
-- Bluebook
