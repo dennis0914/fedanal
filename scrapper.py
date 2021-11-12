@@ -1,6 +1,5 @@
 from bs4 import BeautifulSoup
 import requests
-from datetime import date, timedelta, datetime
 import pandas as pd
 from tqdm import tqdm
 
@@ -34,4 +33,4 @@ for b_date in pbar:
             processed_statement.append(paragraph.strip())
     df.loc[b_date] = " ".join(processed_statement)
 
-df.to_csv('train_statement.csv')
+df.to_csv('statement.csv')
