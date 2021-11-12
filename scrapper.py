@@ -6,7 +6,7 @@ from tqdm import tqdm
 
 df = pd.DataFrame(columns=['date', 'statement'])
 df.set_index('date', inplace=True)
-df_date = pd.read_csv("fomc_dates.csv")
+df_date = pd.read_csv("data/fomc_dates.csv")
 df_date['date'] = pd.to_datetime(df_date['date'])
 
 start_date = pd.Timestamp("2007-01-01")
@@ -31,7 +31,7 @@ for b_date in pbar:
         if((paragraph.lower().startswith("implementation")) or (paragraph.lower().startswith("voting for")) or (paragraph == "")):
             continue
         else:
-            processed_statement.append(paragraph)
+            processed_statement.append(paragraph.strip())
     df.loc[b_date] = " ".join(processed_statement)
 
 df.to_csv('train_statement.csv')
