@@ -22,6 +22,10 @@ for b_date in pbar:
     beige_book = " ".join(beige_book)
     df.loc[b_date] = beige_book
 
-df.to_csv("beige_data.csv")
+df.index = pd.to_datetime(df.index)
+train_df = df.loc[df.index < pd.Timestamp("2017-01-01")]
+test_df = df.loc[df.index >= pd.Timestamp("2017-01-01")]
+train_df.to_csv("data/train_beige.csv")
+test_df.to_csv("data/test_beige.csv")
 
 
