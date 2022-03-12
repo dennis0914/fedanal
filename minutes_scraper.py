@@ -3,6 +3,7 @@ import requests
 import pandas as pd
 from tqdm import tqdm
 from datetime import datetime
+import os
 
 df = pd.DataFrame(columns=['date', 'minutes'])
 df.set_index('date', inplace=True)
@@ -55,9 +56,4 @@ def get_minutes(minutes_url_list):
             minutes = [text.translate(str.maketrans({"\r": None, "\t": None, "\xa0": " "})).replace("  ", " ").strip() for text in minutes]
             minutes = " ".join([text for text in minutes if text != ""])
             df.loc[pd.Timestamp(date_index)] = minutes
-    df.to_csv("data/minutes.csv", mode="a", header = False)
-    #df.to_json("data/minutes.json", date_format = "iso")
-
-
-
-
+    return df
